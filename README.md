@@ -464,11 +464,16 @@ the templates `layout.jade` and `home.jade`, then specify `'/pages/home':
 `/pages/home` has changed will depend on the hashes of both `layout.jade` and
 `home.jade`.
 
+<small>動的 URL 文字列を、URL の内容が依存するすべてのファイルの配列にマップします。たとえば、/pages/home のコンテンツがテンプレート layout.jade と home.jade を介してサーバー側で生成された場合は、 '/pages/home':['layout.jade', 'home.jade'] を指定します。 MD5 ハッシュは、/pages/home が変更されたかどうかを、layout.jade と home.jade のハッシュに依存するかどうかを判断するために使用します。</small>
+
 An alternative value for the mapping is supported as well. You can specify
 a string or a Buffer instance rather than an array of file names. If you use this option, then the
 hash of the string/Buffer will be used to determine whether the URL used as a key has changed.
 For example, `'/pages/dynamic': dynamicStringValue` could be used if the contents of
 `/pages/dynamic` changes whenever the string stored in `dynamicStringValue` changes.
+
+
+<small>マッピングの代替値もサポートされています。ファイル名の配列ではなく文字列または Buffer インスタンスを指定できます。このオプションを使用すると、キーとして使用されるURLが変更されたかどうかを判断するために、文字列/バッファのハッシュが使用されます。たとえば、 '/pages/dynamic'：dynamicStringValue は、dynamicStringValue に格納された文字列が変更されるたびに /pages/dynamic の内容が変更された場合に使用できます。</small>
 
 _Default_: `{}`
 
@@ -477,6 +482,8 @@ Determines whether the `fetch` event handler is included in the generated
 service worker code. It is useful to set this to `false` in development builds,
 to ensure that features like live reload still work. Otherwise, the content
 would always be served from the service worker cache.
+
+<small>フェッチイベントハンドラが生成されたサービスワーカーコードに含まれるかどうかを決定します。ライブリロードのような機能が動作するように、開発ビルドでこれを false に設定すると便利です。それ以外の場合、コンテンツは常にサービスワーカーキャッシュから提供されます。</small>
 
 _Default_: `true`
 
@@ -489,11 +496,15 @@ campaign performance. By default, `sw-precache` will ignore `key=value` when `ke
 the regular expressions provided in this option.
 To ignore all parameters, use `[/./]`. To take all parameters into account when matching, use `[]`.
 
+<small>sw-precache は、完全なリクエスト URL との比較を行うことで、一致するキャッシュエントリを見つけます。サイトでは、サイトのコンテンツに影響を与えない URL クエリパラメータをサポートすることが一般的であり、キャッシュマッチングの目的では効果的に無視する必要があります。 1つの例は、キャンペーンの掲載結果を追跡するために使用される utm_ 接頭辞パラメータです。デフォルトでは、このオプションで指定された正規表現に key が一致すると、sw-precache は key=value を無視します。すべてのパラメータを無視するには、[/./] を使用します。一致するときにすべてのパラメータを考慮するには、[] を使用します。</small>
+
 _Default_: `[/^utm_/]`
 
 #### importScripts [Array&#x27e8;String&#x27e9;]
 Writes calls to [`importScripts()`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/basic_usage#Importing_scripts_and_libraries)
 to the resulting service worker to import the specified scripts.
+
+<small>結果のサービスワーカーに importScripts() への呼び出しを書き込み、指定されたスクリプトをインポートします。</small>
 
 _Default_: `[]`
 
@@ -503,10 +514,14 @@ Specifies a callback function for logging which resources are being precached an
 a precache size. Use `function() {}` if you'd prefer that nothing is logged.
 Within a `gulp` script, it's recommended that you use [`gulp-util`](https://github.com/gulpjs/gulp-util) and pass in `gutil.log`.
 
+<small>どのリソースがプリキャッシュされているかを記録するためのコールバック関数とプリキャッシュサイズを指定します。何も記録されないようにするには、function(){} を使用してください。 gulp スクリプト内では、gulp-util を使用し、gutil.log を渡すことをお勧めします。</small>
+
 _Default_: `console.log`
 
 #### maximumFileSizeToCacheInBytes [Number]
 Sets the maximum allowed size for a file in the precache list.
+
+<small>プリキャッシュリスト内のファイルの最大許容サイズを設定します。</small>
 
 _Default_: `2097152` (2 megabytes)
 
@@ -514,6 +529,8 @@ _Default_: `2097152` (2 megabytes)
 Sets an HTML document to use as a fallback for URLs not found in the `sw-precache` cache. This
 fallback URL needs to be cached via `staticFileGlobs` or `dynamicUrlToDependencies` otherwise it
 won't work.
+
+<small>sw-precache キャッシュにない URL のフォールバックとして使用する HTML ドキュメントを設定します。この代替 URL は staticFileGlobs または dynamicUrlToDependencies 経由でキャッシュする必要があります。それ以外の場合は機能しません。</small>
 
 ```js
 // via staticFileGlobs
@@ -533,11 +550,15 @@ arbitrary URL that the client generates to map to a fallback cached HTML entry. 
 ideally should serve as an "application shell" that is able to load the appropriate resources
 client-side, based on the request URL.
 
+<small>これは、ヒストリー API を使用してクライアント側 URL ルーティングを実行する Web アプリケーションで使用すると便利です。これは、クライアントが生成した任意の URL を、フォールバックキャッシュされた HTML エントリにマップすることを許可します。このフォールバックエントリは、理想的には、要求 URL に基​​づいてクライアント側で適切なリソースをロードできる「アプリケーションシェル」として機能する必要があります。</small>
+
 **Note:** This is **not** intended to be used to route failed navigations to a
 generic "offline fallback" page. The `navigateFallback` page is used whether the
 browser is online or offline. If you want to implement an "offline fallback",
 then using an approach similar to [this example](https://googlechrome.github.io/samples/service-worker/custom-offline-page/)
 is more appropriate.
+
+<small>注：これは、失敗したナビゲーションを一般的な「オフラインフォールバック」ページにルーティングするために使用するためのものではありません。 navigateFallback ページは、ブラウザがオンラインであるかオフラインであるかにかかわらず使用されます。 「オフラインのフォールバック」を実装する場合は、この例のようなアプローチを使用する方が適切です。</small>
 
 _Default_: `''`
 
@@ -546,14 +567,20 @@ Works to limit the effect of `navigateFallback`, so that the fallback only
 applies to requests for URLs with paths that match at least one
 [`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 
+<small>navigateFallback の効果を制限し、少なくとも1つの RegExp と一致するパスを持つ URL の要求にのみフォールバックが適用されるようにします。</small>
+
 This option is useful if you want to fallback to the cached App Shell for
 certain specific subsections of your site, but not have that behavior apply
 to all of your site's URLs.
+
+<small>このオプションは、サイトの特定のサブセクションに対してキャッシュされた App シェルにフォールバックしたいが、その動作がサイトのすべての URL に適用されないようにする場合に便利です。</small>
 
 For example, if you would like to have `navigateFallback` only apply to
 navigation requests to URLs whose path begins with `/guide/`
 (e.g. `https://example.com/guide/1234`), the following configuration could be
 used:
+
+<small>たとえば、navigateFallback を /guide/ で始まる URL（たとえばhttps://example.com/guide/1234）の URL へのナビゲーションリクエストにのみ適用する場合は、次の設定を使用できます。</small>
 
 ```js
 navigateFallback: '/shell',
@@ -562,6 +589,8 @@ navigateFallbackWhitelist: [/^\/guide\//]
 
 If set to `[]` (the default), the whitelist will be effectively bypassed, and
 `navigateFallback` will apply to all navigation requests, regardless of URL.
+
+<small>[]（デフォルト）に設定すると、ホワイトリストは効果的にバイパスされ、URL に関係なくすべてのナビゲーション要求に navigateFallback が適用されます。</small>
 
 _Default_: `[]`
 
@@ -572,12 +601,16 @@ than you are at build time. For example, if your local files are under
 `dist/app/` but your static asset root is at `/public/`, you'd strip 'dist/app/'
 and replace it with '/public/'.
 
+<small>実行時にパス URL の先頭にある指定された文字列を置き換えます。実行時にビルド時とは異なるディレクトリから静的ファイルを提供する場合は、このオプションを使用します。たとえば、ローカルファイルが dist/app/ の下にあり、静的資産ルートが /public/ にある場合は、 'dist/app/' を削除して '/public/' に置き換えます。</small>
+
 _Default_: `''`
 
 #### runtimeCaching [Array&#x27e8;Object&#x27e9;]
 Configures runtime caching for dynamic content. If you use this option, the `sw-toolbox`
 library configured with the caching strategies you specify will automatically be included in
 your generated service worker file.
+
+<small>動的コンテンツの実行時キャッシュを構成します。このオプションを使用すると、指定したキャッシュ方法で構成された sw-toolbox ライブラリが、生成されたサービスワーカーファイルに自動的に含まれます。</small>
 
 Each `Object` in the `Array` needs a `urlPattern`, which is either a
 [`RegExp`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
@@ -590,9 +623,13 @@ Optionally, `method` can be added to specify one of the [supported HTTP methods]
 support for `options`, which corresponds to the same options supported by a
 [`sw-toolbox` handler](https://googlechromelabs.github.io/sw-toolbox/api.html#handlers).
 
+<small>Array 内の各オブジェクトには、sw-toolbox ライブラリのルーティング設定の規則に従い、urlPattern（RegExpまたは文字列）が必要です。また、ハンドラが必要です。このハンドラは、ツールボックスの下のビルトインハンドラに対応する文字列でなければなりません。ネームスペース、またはカスタムリクエストハンドラに対応する関数が含まれます。オプションで、メソッドを追加して、サポートされる HTTP メソッドの1つを指定することができます（デフォルト： 'get'）。 sw-toolbox ハンドラでサポートされているオプションと同じオプションに対応するオプションもサポートされています。</small>
+
 For example, the following defines runtime caching behavior for two different URL patterns. It uses a
 different handler for each, and specifies a dedicated cache with maximum size for requests
 that match `/articles/`:
+
+<small>たとえば、次の例では、2つの異なる URL パターンのランタイムキャッシング動作を定義しています。これは、それぞれ異なるハンドラを使用し、/articles/ と一致する要求の最大サイズを持つ専用キャッシュを指定します。</small>
 
 ```js
 runtimeCaching: [{
@@ -613,6 +650,8 @@ runtimeCaching: [{
 The [`sw-precache` + `sw-toolbox` explainer](sw-precache-and-sw-toolbox.md) has
 more information about how and why you'd use both libraries together.
 
+<small>sw-precache + sw-toolbox の説明文には、両方のライブラリを一緒に使う方法と理由についての詳細があります。</small>
+
 _Default_: `[]`
 
 #### skipWaiting [Boolean]
@@ -620,11 +659,15 @@ Controls whether or not the generated service worker will call
 [`skipWaiting()`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/skipWaiting)
 inside the `install` handler.
 
+<small>生成されたサービスワーカーがインストールハンドラ内で skipWaiting() を呼び出すかどうかを制御します。</small>
+
 By default, when there's an update to a previously installed
 service worker, then the new service worker delays activation and stays in a
 `waiting` state until all pages controlled by the old service worker are
 unloaded. Calling `skipWaiting()` allows a newly registered service worker to
 bypass the `waiting` state.
+
+<small>既定では、以前にインストールされたサービスワーカーの更新があると、新しいサービスワーカーはアクティブ化を遅延させ、古いサービスワーカーによって制御されるすべてのページがアンロードされるまで待機状態にとどまります。 skipWaiting() )を呼び出すと、新規に登録されたサービスワーカーが待機状態をバイパスできます。</small>
 
 When `skipWaiting` is `true`, the new service worker's `activate` handler will
 be called immediately, and any out of date cache entries from the previous
@@ -633,6 +676,8 @@ cached resources to be available throughout the page's lifetime, because, for
 example, you [defer the loading of some resources](https://github.com/GoogleChrome/sw-precache/issues/180)
 until they're needed at runtime.
 
+<small>skipWaiting が true の場合、新しいサービスワーカーのアクティブハンドラが直ちに呼び出され、以前のサービスワーカーからの古いキャッシュエントリが削除されます。たとえば、実行時に必要になるまでいくつかのリソースの読み込みを延期するなど、古いキャッシュされたリソースをページの有効期間全体で利用できるようにする場合は、この点を覚えておいてください。</small>
+
 _Default_: `true`
 
 #### staticFileGlobs [Array&#x27e8;String&#x27e9;]
@@ -640,6 +685,8 @@ An array of one or more string patterns that will be passed in to
 [`glob`](https://github.com/isaacs/node-glob).
 All files matching these globs will be automatically precached by the generated service worker.
 You'll almost always want to specify something for this.
+
+<small>glob に渡される1つ以上の文字列パターンの配列。これらのグロブに一致するすべてのファイルは、生成されたサービスワーカーによって自動的に事前にキャッシュされます。ほとんどの場合、これに何かを指定する必要があります。</small>
 
 _Default_: `[]`
 
@@ -651,6 +698,8 @@ the same path at run time. For example, if all your local files are under
 from the start of each local file's path in order to get the correct relative
 URL.
 
+<small>実行時に指定された文字列をパスURLの先頭から削除します。このオプションは、ビルド時の相対パスと実行時の同じパスに不一致がある場合に使用します。たとえば、すべてのローカルファイルが dist/app/ の下にあり、Web ルートもdist/app/ にある場合は、正しい相対URLを取得するために、各ローカルファイルのパスの先頭からその接頭辞を削除します。</small>
+
 _Default_: `''`
 
 #### stripPrefixMulti [Object]
@@ -658,6 +707,9 @@ Maps multiple strings to be stripped and replaced from the beginning of URL path
 Use this option when you have multiple discrepancies between relative paths at build time and
 the same path at run time.
 If `stripPrefix` and `replacePrefix` are not equal to `''`, they are automatically added to this option.
+
+<small>実行時にURLパスの先頭から複数の文字列を削除して置換します。このオプションは、ビルド時に相対パスと実行時に同じパスとの間に複数の不一致がある場合に使用します。 stripPrefix と re​​placePrefixが '' と等しくない場合、自動的にこのオプションに追加されます。</small>
+
 ```js
 stripPrefixMulti: {
   'www-root/public-precached/': 'public/',
@@ -677,12 +729,16 @@ using a different template. But if you do need to change the basic generated
 service worker code, please make a copy of the [original template](https://github.com/googlechrome/sw-precache/blob/master/service-worker.tmpl),
 modify it locally, and use this option to point to your template file.
 
+<small>service-worker.jsを 生成するために使用された（lo-dash）テンプレートへのパス。生成されたサービスワーカーコードに機能を追加する必要がある場合は、別のテンプレートを使用するのではなく、JavaScript を追加するために importScripts オプションを使用することをお勧めします。しかし、基本的に生成されたサービスワーカーコードを変更する必要がある場合は、元のテンプレートのコピーを作成し、ローカルで修正し、このオプションを使用してテンプレートファイルを指定してください。</small>
+
 _Default_: `service-worker.tmpl` (in the directory that this module lives in)
 
 #### verbose [boolean]
 Determines whether there's log output for each individual static/dynamic resource that's precached.
 Even if this is set to false, there will be a final log entry indicating the total size of all
 precached resources.
+
+<small>定義済みの静的/動的リソースごとにログ出力を行うかどうかを決定します。これがfalseに設定されていても、すべてのキャッシュされたリソースの合計サイズを示す最終ログエントリがあります。</small>
 
 _Default_: `false`
 
@@ -692,6 +748,9 @@ _Default_: `false`
 While it's possible to use the `sw-precache` module's API directly within any
 JavaScript environment, several wrappers have been developed by members of the
 community tailored to specific build environments. They include:
+
+<small>任意の JavaScript 環境で sw-precache モジュールの API を直接使用することは可能ですが、特定のビルド環境に合わせたコミュニティのメンバーによっていくつかのラッパーが開発されています：</small>
+
 - [`sw-precache-webpack-plugin`](https://www.npmjs.com/package/sw-precache-webpack-plugin)
 - [`sw-precache-brunch`](https://www.npmjs.com/package/sw-precache-brunch)
 - [`grunt-sw-precache`](https://www.npmjs.com/package/grunt-sw-precache)
@@ -700,6 +759,8 @@ community tailored to specific build environments. They include:
 There are also several starter kits or scaffolding projects that incorporate
 `sw-precache` into their build process, giving you a full service worker out of
 the box. The include:
+
+<small>また、sw-precache をビルドプロセスに組み込んだ、いくつかのスターターキットまたは足場プロジェクトがあり、あなたにフルサービスワーカーを提供します：</small>
 
 ### CLIs
 
@@ -716,6 +777,8 @@ the box. The include:
 
 While there are not always ready-to-use wrappers for specific environments, this list contains some recipes to integrate `sw-precache` in your workflow:
 
+<small>特定の環境で常に使用可能なラッパーはありませんが、このリストにはワークフローに sw-precache を統合するためのレシピがいくつか含まれています。</small>
+
 - [Gradle wrapper for offline JavaDoc](https://gist.github.com/TimvdLippe/4c39b99e3b0ffbcdd8814a31e2969ed1)
 - [Brunch starter for Phoenix Framework](https://gist.github.com/natecox/b19c4e08408a5bf0d4cf4d74f1902260)
 
@@ -729,15 +792,23 @@ Thanks to [Sindre Sorhus](https://github.com/sindresorhus) and
 
 The team behind `sw-toolbox` and `sw-precache` have been busy creating [Workbox](https://workboxjs.org), which is a collection of libraries and tools that make it easy to build offline web apps. It’s a joining of [sw-toolbox](https://github.com/GoogleChrome/sw-toolbox) and [sw-precache](https://github.com/GoogleChrome/sw-precache) with more features and a modern codebase.
 
+<small>sw-toolbox と sw-precache の背後にあるチームは、オフライン Web アプリケーションを簡単に構築できるようにするライブラリとツールの集まりである Workbox の作成に忙殺されています。これは、より多くの機能と最新のコードベースを備えた sw-toolbox と sw-precache の結合です。</small>
+
 ### What does this mean for sw-toolbox?
 
 For now, it means we’ll continue to support both `sw-toolbox` and `sw-precache` with critical bug fixes and releases. However, non-critical bugs are unlikely to be addressed.
+
+<small>今のところ、重要なバグ修正やリリースで sw-toolbox と sw-precache の両方を引き続きサポートする予定です。しかし、クリティカルではないバグには対処できません。</small>
 
 ### Should you switch to Workbox?
 
 We would recommend Workbox for new projects, but there is no immediate need to switch if `sw-toolbox` / `sw-precache` meets all your needs in your current project. We will announce a deprecation plan for these modules once Workbox has feature parity with `sw-toolbox` and `sw-precache`.
 
+<small>新しいプロジェクトのために Workbox をお勧めしますが、sw-toolbox/sw-precache が現在のプロジェクトのすべてのニーズを満たしているかどうかをすぐに切り替える必要はありません。 Workbox が sw-toolbox と sw-precache で機能パリティを持つと、これらのモジュールの非推奨プランが発表されます。</small>
+
 In the meantime, you can get updates by following [@workboxjs](https://twitter.com/workboxjs).
+
+<small>その間、@workboxjs に従うことでアップデートを入手できます。</small>
 
 ## License
 
