@@ -10,13 +10,13 @@ versioned hash are stored in the generated service worker file, along with logic
 to serve those files cache-first, and automatically keep those files up to date
 when changes are detected in subsequent builds.
 
-Service Worker Precache は、リソースを事前定義するサービスワーカーを生成するためのモジュールです。ビルドプロセスと統合されています。設定が完了すると、静的リソース（HTML、JavaScript、CSS、イメージなど）がすべて検出され、各ファイルの内容のハッシュが生成されます。生成されたサービスワーカーファイルには、各ファイルの URL およびバージョン化されたハッシュに関する情報が格納され、それらのファイルを cache-first で処理するロジックが格納され、後続のビルドで変更が検出されると自動的にそのファイルが最新の状態に保たれます。
+<small>Service Worker Precache は、リソースを事前定義するサービスワーカーを生成するためのモジュールです。ビルドプロセスと統合されています。設定が完了すると、静的リソース（HTML、JavaScript、CSS、イメージなど）がすべて検出され、各ファイルの内容のハッシュが生成されます。生成されたサービスワーカーファイルには、各ファイルの URL およびバージョン化されたハッシュに関する情報が格納され、それらのファイルを cache-first で処理するロジックが格納され、後続のビルドで変更が検出されると自動的にそのファイルが最新の状態に保たれます。</small>
 
 Serving your local static resources cache-first means that you can get all the
 crucial scaffolding for your web app—your App Shell—on the screen without having
 to wait for any network responses.
 
-ローカルの静的リソースをキャッシュ優先で配信するということは、ネットワークの応答を待つことなく、画面上で Web アプリケーション（App Shell）の重要な足場をすべて取得できることを意味します。
+<small>ローカルの静的リソースをキャッシュ優先で配信するということは、ネットワークの応答を待つことなく、画面上で Web アプリケーション（App Shell）の重要な足場をすべて取得できることを意味します。</small>
 
 The module can be used in JavaScript-based build scripts,
 like those written with [`gulp`](http://gulpjs.com/), and it also provides a
@@ -25,23 +25,23 @@ directly, or if you'd prefer, use one of the [wrappers](#wrappers-and-starter-ki
 around `sw-precache` for specific build environments, like
 [`webpack`](https://webpack.github.io/).
 
-このモジュールは、gulp で書かれたもののような JavaScript ベースのビルドスクリプトで使用でき、更にコマンドラインインターフェイスも提供します。モジュールを直接使用することもできますし、必要に応じて、webpack のような特定のビルド環境に sw-precache のラッパーを使用することもできます。
+<small>このモジュールは、gulp で書かれたもののような JavaScript ベースのビルドスクリプトで使用でき、更にコマンドラインインターフェイスも提供します。モジュールを直接使用することもできますし、必要に応じて、webpack のような特定のビルド環境に sw-precache のラッパーを使用することもできます。</small>
 
 It can be [used alongside](sw-precache-and-sw-toolbox.md) the [`sw-toolbox`](https://github.com/GoogleChrome/sw-toolbox)
 library, which works well when following the App Shell + dynamic content model.
 
-これは sw-toolbox ライブラリと一緒に使うことができます。これは、App Shell + 動的コンテンツモデルに従うときにうまくいきます。
+<small>これは sw-toolbox ライブラリと一緒に使うことができます。これは、App Shell + 動的コンテンツモデルに従うときにうまくいきます。</small>
 
 The full documentation is in this README, and the
 [getting started guide](GettingStarted.md) provides a quicker jumping off point.
 
-完全なドキュメントはこの README にあり、Getting Started guide はより迅速なジャンプポイントを提供します。
+<small>完全なドキュメントはこの README にあり、Getting Started guide はより迅速なジャンプポイントを提供します。</small>
 
 To learn more about the internals of the generated service worker, you can read
 [this deep-dive](https://medium.com/@Huxpro/how-does-sw-precache-works-2d99c3d3c725)
 by [Huang Xuan](https://twitter.com/Huxpro).
 
-生成されたサービスワーカーの内部について詳しくは、Huang Xuan の deep-dive をご覧ください。
+<small>生成されたサービスワーカーの内部について詳しくは、Huang Xuan の deep-dive をご覧ください。</small>
 
 # Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -116,7 +116,7 @@ Service worker functionality is only available on pages that are accessed via HT
 outlined in the
 ["Prefer Secure Origins For Powerful New Features" document](http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
 
-サービスワーカー機能は、HTTPS 経由でアクセスされるページでのみ使用できます。 （テストを容易にするために、http://localhost も機能します）。この制限の根拠は、Prefer Secure Origins For Powerful New Features のドキュメントで概説されています。
+<small>サービスワーカー機能は、HTTPS 経由でアクセスされるページでのみ使用できます。 （テストを容易にするために、http://localhost も機能します）。この制限の根拠は、Prefer Secure Origins For Powerful New Features のドキュメントで概説されています。</small>
 
 2. **Incorporate `sw-precache` into your `node`-based build script.**  
 sw-precache を node ベースのビルドスクリプトに組み込みます。
@@ -129,7 +129,7 @@ that takes care of precaching and fetching all the resources your site needs to
 function offline. There is also a [command-line interface](#command-line-interface)
 available, for those using alternate build setups.
 
-これは、gulp または Grunt、またはノード上で実行されるその他のビルドスクリプトでうまくいくはずです。実際には、両方の例をdemo/ ディレクトリに用意しました。デモの各ビルドスクリプトには、API の使用方法を示す writeServiceWorkerFile() という関数があります。両方のスクリプトでは、サイトがオフラインで機能するために必要なすべてのリソースのプリキャッシングとフェッチを行う完全機能の JavaScript コードが生成されます。代替のビルド設定を使用している場合は、コマンドラインインターフェイスも利用できます。
+<small>これは、gulp または Grunt、またはノード上で実行されるその他のビルドスクリプトでうまくいくはずです。実際には、両方の例をdemo/ ディレクトリに用意しました。デモの各ビルドスクリプトには、API の使用方法を示す writeServiceWorkerFile() という関数があります。両方のスクリプトでは、サイトがオフラインで機能するために必要なすべてのリソースのプリキャッシングとフェッチを行う完全機能の JavaScript コードが生成されます。代替のビルド設定を使用している場合は、コマンドラインインターフェイスも利用できます。</small>
 
 3. **Register the service worker JavaScript.**  
 サービスワーカー JavaScript を登録します。
@@ -142,7 +142,7 @@ which will apply to all pages underneath your top-level page. [`service-worker-r
 script that illustrates the best practices for registering the generated service
 worker and handling the various [lifecycle](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-state.1) events.
 
-生成された JavaScript は、ページの制御用サービスワーカーとして登録する必要があります。これは技術的には、トップレベルのページの下にあるすべてのページに適用されるスコープが登録に含まれているため、サイトのトップレベルの「エントリ」ページ内から行う必要があります。 service-worker-registration.js は、生成されたサービスワーカーを登録し、さまざまなライフサイクルイベントを処理するためのベストプラクティスを示すサンプルスクリプトです。
+<small>生成された JavaScript は、ページの制御用サービスワーカーとして登録する必要があります。これは技術的には、トップレベルのページの下にあるすべてのページに適用されるスコープが登録に含まれているため、サイトのトップレベルの「エントリ」ページ内から行う必要があります。 service-worker-registration.js は、生成されたサービスワーカーを登録し、さまざまなライフサイクルイベントを処理するためのベストプラクティスを示すサンプルスクリプトです。</small>
 
 ### Example
 
@@ -153,17 +153,17 @@ repo, using [`npm install`](https://docs.npmjs.com/) to pull in the
 dependencies, changing to the `demo/` directory, running `` `npm bin`/gulp serve-dist ``, and
 then visiting http://localhost:3000.
 
-プロジェクトのサンプル gulpfile.js は、コンテキスト内で sw-precache を完全に使用する方法を示しています。サンプル gulpfile.js は、プロジェクトのルートにあるサンプルではなく、デモフォルダ内のサンプルです。サンプルを実行するには、このリポジトリを複製し、npm install を使用して依存関係を取得し、demo/ ディレクトリに変更し、 `npm bin /gulp serve-dist` を実行し、http://localhost:3000 にアクセスしてください。
+<small>プロジェクトのサンプル gulpfile.js は、コンテキスト内で sw-precache を完全に使用する方法を示しています。サンプル gulpfile.js は、プロジェクトのルートにあるサンプルではなく、デモフォルダ内のサンプルです。サンプルを実行するには、このリポジトリを複製し、npm install を使用して依存関係を取得し、demo/ ディレクトリに変更し、 `npm bin /gulp serve-dist` を実行し、http://localhost:3000 にアクセスしてください。</small>
 
 There's also a [sample `Gruntfile.js`](/demo/Gruntfile.js) that shows service worker generation in
 Grunt. Though, it doesn't run a server on localhost.
 
-Grunt のサービスワーカーの生成を示すサンプル Gruntfile.js もあります。しかし、localhost ではサーバを実行しません。
+<small>Grunt のサービスワーカーの生成を示すサンプル Gruntfile.js もあります。しかし、localhost ではサーバを実行しません。</small>
 
 Here's a simpler gulp example for a basic use case. It assumes your site's resources are located under
 `app` and that you'd like to cache *all* your JavaScript, HTML, CSS, and image files.
 
-ここでは、基本的なユースケースの簡単な例を示します。あなたのサイトのリソースが app の下にあり、JavaScript、HTML、CSS、およびイメージファイルをすべてキャッシュしたいと仮定しています。
+<small>ここでは、基本的なユースケースの簡単な例を示します。あなたのサイトのリソースが app の下にあり、JavaScript、HTML、CSS、およびイメージファイルをすべてキャッシュしたいと仮定しています。</small>
 
 ```js
 gulp.task('generate-service-worker', function(callback) {
@@ -182,7 +182,7 @@ This task will create `app/service-worker.js`, which your client pages need to
 pages. [`service-worker-registration.js`](/demo/app/js/service-worker-registration.js) is a ready-to-
 use script to handle registration.
 
-このタスクは app/service-worker.js を作成します。クライアントページはサイトのページを管理する前に登録する必要があります。 service-worker-registration.js は、登録を処理するためにすぐに使えるスクリプトです。
+<small>このタスクは app/service-worker.js を作成します。クライアントページはサイトのページを管理する前に登録する必要があります。 service-worker-registration.js は、登録を処理するためにすぐに使えるスクリプトです。</small>
 
 ### Considerations 懸念事項
 
@@ -191,21 +191,21 @@ conditionally registering a service worker only if it's supported (determined by
 `if('serviceWorker' in navigator)`), you'll get offline support on browsers with service workers and
 on browsers that don't support service workers, the offline-specific code will never be called.
 There's no overhead/breakage for older browsers if you add `sw-precache` to your build.  
-サービスワーカーのキャッシュは、pregressive enhancement と見なすべきです。サポートされている場合（if( 'serviceWorker' in navigator)）、条件付きでサービスワーカーを登録するモデルに従うと、サービスワーカーを持つブラウザとサービスワーカーをサポートしていないブラウザでオフラインサポートが得られます。オフライン固有のコードは決して呼び出されません。 sw-precache をビルドに追加しても、古いブラウザのオーバーヘッド/ブレークはありません。
+<small>サービスワーカーのキャッシュは、pregressive enhancement と見なすべきです。サポートされている場合（if( 'serviceWorker' in navigator)）、条件付きでサービスワーカーを登録するモデルに従うと、サービスワーカーを持つブラウザとサービスワーカーをサポートしていないブラウザでオフラインサポートが得られます。オフライン固有のコードは決して呼び出されません。 sw-precache をビルドに追加しても、古いブラウザのオーバーヘッド/ブレークはありません。</small>
 
 - **All** resources that are precached will be fetched by a service worker running in a separate
 thread as soon as the service worker is installed. You should be judicious in what you list in the
 `dynamicUrlToDependencies` and `staticFileGlobs` options, since listing files that are non-essential
 (large images that are not shown on every page, for instance) will result in browsers downloading
 more data than is strictly necessary.  
-プリキャッシュされたすべてのリソースは、サービスワーカーがインストールされるとすぐに別のスレッドで実行されるサービスワーカーによってフェッチされます。 dynamicUrlToDependencies と staticFileGlobs オプションでは、必須ではないファイル（すべてのページに表示されない大きな画像）をリストすると、必要以上にデータをダウンロードするブラウザが生じるため、慎重に選択する必要があります。
+<small>プリキャッシュされたすべてのリソースは、サービスワーカーがインストールされるとすぐに別のスレッドで実行されるサービスワーカーによってフェッチされます。 dynamicUrlToDependencies と staticFileGlobs オプションでは、必須ではないファイル（すべてのページに表示されない大きな画像）をリストすると、必要以上にデータをダウンロードするブラウザが生じるため、慎重に選択する必要があります。</small>
 
 - Precaching doesn't make sense for all types of resources (see the previous
 point). Other caching strategies, like those outlined in the [Offline Cookbook](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/), can be used in
 conjunction with `sw-precache` to provide the best experience for your users. If
 you do implement additional caching logic, put the code in a separate JavaScript
 file and include it using the `importScripts()` method.  
-すべてのタイプのリソースに対して、プレキャッシングが働くわけではありません（前のポイントを参照）。Offline Cookbook に記載されているような他のキャッシング戦略は、sw-precache と組み合わせて使用​​して、ユーザーに最高のエクスペリエンスを提供することができます。追加のキャッシュロジックを実装する場合は、コードを別の JavaScript ファイルに置き、importScripts() メソッドを使用してコードをインクルードします。
+<small>すべてのタイプのリソースに対して、プレキャッシングが働くわけではありません（前のポイントを参照）。Offline Cookbook に記載されているような他のキャッシング戦略は、sw-precache と組み合わせて使用​​して、ユーザーに最高のエクスペリエンスを提供することができます。追加のキャッシュロジックを実装する場合は、コードを別の JavaScript ファイルに置き、importScripts() メソッドを使用してコードをインクルードします。</small>
 
 - `sw-precache` uses a [cache-first](http://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network) strategy, which results in a copy of
 any cached content being returned without consulting the network. A useful
@@ -214,7 +214,7 @@ when there's new content available, and give them an opportunity to reload the
 page to pick up that new content (which the service worker will have added to
 the cache, and will be available at the next page load). The sample [`service-worker-registration.js`](/demo/app/js/service-worker-registration.js) file [illustrates](https://github.com/GoogleChrome/sw-precache/blob/7688ee8ccdaddd9171af352384d04d16d712f9d3/demo/app/js/service-worker-registration.js#L51)
 the service worker lifecycle event you can listen for to trigger this message.  
-sw-precache は cache-first です。その結果、キャッシュされたコンテンツのコピーが、ネットワークに相談せずに返されます。この戦略を採用するのに便利なパターンは、利用可能な新しいコンテンツがあるときにユーザーにトースト/アラートを表示し、ページをリロードして新しいコンテンツを取得する機会を与えられることです（サービスワーカーがキャッシュに追加します） 、次のページのロード時に利用可能になります）。サンプル service-worker-registration.js ファイルは、このメッセージをトリガーするために待機できるサービスワーカーライフサイクルイベントを示しています。
+<small>sw-precache は cache-first です。その結果、キャッシュされたコンテンツのコピーが、ネットワークに相談せずに返されます。この戦略を採用するのに便利なパターンは、利用可能な新しいコンテンツがあるときにユーザーにトースト/アラートを表示し、ページをリロードして新しいコンテンツを取得する機会を与えられることです（サービスワーカーがキャッシュに追加します） 、次のページのロード時に利用可能になります）。サンプル service-worker-registration.js ファイルは、このメッセージをトリガーするために待機できるサービスワーカーライフサイクルイベントを示しています。</small>
 
 ### Command-line interface
 
@@ -223,25 +223,25 @@ For those who would prefer not to use `sw-precache` as part of a `gulp` or
 [options listed](#options-parameter) in the API, provided via flags or an
 external JavaScript configuration file.
 
-gulp や Grunt ビルドの一部として sw-precache を使用したくない人には、API にリストされたオプションをサポートするコマンドラインインターフェイスが用意されています。これは、フラグや外部の JavaScript 設定ファイルによって提供されます。
+<small>gulp や Grunt ビルドの一部として sw-precache を使用したくない人には、API にリストされたオプションをサポートするコマンドラインインターフェイスが用意されています。これは、フラグや外部の JavaScript 設定ファイルによって提供されます。</small>
 
 Hypenated flags are converted to camelCase [options](#options-parameter).  
 Options starting with `--no` prefix negate the boolean value. For example, `--no-clients-claim` sets the value of `clientsClaim` to `false`.
 
-ハイフンフラグはキャメルケースオプションに変換されます。
---no プレフィックスで始まるオプションはブール値を否定します。たとえば、--no-clients-claim は、clientsClaim の値をfalse に設定します。
+<small>ハイフンフラグはキャメルケースオプションに変換されます。
+--no プレフィックスで始まるオプションはブール値を否定します。たとえば、--no-clients-claim は、clientsClaim の値をfalse に設定します。</small>
 
 **Warning:** When using `sw-precache` "by hand", outside of an automated build process, it's your
 responsibility to re-run the command each time there's a change to any local resources! If `sw-precache`
 is not run again, the previously cached local resources will be reused indefinitely.
 
-警告：sw-precache を "手作業で" 使用する場合、Grunt や Gulp などの自動ビルドプロセスの外では、ローカルリソースが変更されるたびにコマンドを再実行する必要があります。 sw-precache が再度実行されない場合、以前にキャッシュされたローカルリソースは無期限に再利用されます。
+<small>警告：sw-precache を "手作業で" 使用する場合、Grunt や Gulp などの自動ビルドプロセスの外では、ローカルリソースが変更されるたびにコマンドを再実行する必要があります。 sw-precache が再度実行されない場合、以前にキャッシュされたローカルリソースは無期限に再利用されます。</small>
 
 Sensible defaults are assumed for options that are not provided. For example, if you are inside
 the top-level directory that contains your site's contents, and you'd like to generate a
 `service-worker.js` file that will automatically precache all of the local files, you can simply run
 
-提供されていないオプションについては、わかりやすいデフォルトが想定されます。たとえば、サイトのコンテンツを含むトップレベルディレクトリの内部にあり、すべてのローカルファイルを自動的にプリキャッシュする service-worker.js ファイルを生成する場合は、単に実行するだけです
+<small>提供されていないオプションについては、わかりやすいデフォルトが想定されます。たとえば、サイトのコンテンツを含むトップレベルディレクトリの内部にあり、すべてのローカルファイルを自動的にプリキャッシュする service-worker.js ファイルを生成する場合は、単に実行するだけです</small>
 
 ```sh
 $ sw-precache
@@ -250,7 +250,7 @@ $ sw-precache
 Alternatively, if you'd like to only precache `.html` files that live within `dist/`, which is a
 subdirectory of the current directory, you could run
 
-あるいは、現在のディレクトリのサブディレクトリである dist/ 内に存在する .html ファイルのみをプリキャッシュする場合は、以下のように書けるでしょう
+<small>あるいは、現在のディレクトリのサブディレクトリである dist/ 内に存在する .html ファイルのみをプリキャッシュする場合は、以下のように書けるでしょう</small>
 
 ```sh
 $ sw-precache --root=dist --static-file-globs='dist/**/*.html'
@@ -260,7 +260,7 @@ $ sw-precache --root=dist --static-file-globs='dist/**/*.html'
 to your shell (such as the `*` characters in the sample command line above,
 for example).
 
-注意：シェルに特別な意味を持つパラメータ値については、引用符を使用してください（たとえば、上記のサンプルコマンドラインの * 文字など）。
+<small>注意：シェルに特別な意味を持つパラメータ値については、引用符を使用してください（たとえば、上記のサンプルコマンドラインの * 文字など）。</small>
 
 Finally, there's support for passing complex configurations using `--config <file>`.
 Any of the options from the file can be overridden via a command-line flag.
@@ -268,7 +268,7 @@ We strongly recommend passing it an external JavaScript file defining config via
 [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
 For example, assume there's a `path/to/sw-precache-config.js` file that contains:
 
-最後に、--config <file> を使用して複雑な設定を渡すサポートがあります。ファイルからの任意のオプションは、コマンドラインフラグで上書きすることができます。私たちは、module.exports 経由で config を定義する外部 JavaScript ファイルを渡すことを強くお勧めします。たとえば、次のものを含む path/to/sw-precache-config.js ファイルがあるとします。
+<small>最後に、--config <file> を使用して複雑な設定を渡すサポートがあります。ファイルからの任意のオプションは、コマンドラインフラグで上書きすることができます。私たちは、module.exports 経由で config を定義する外部 JavaScript ファイルを渡すことを強くお勧めします。たとえば、次のものを含む path/to/sw-precache-config.js ファイルがあるとします。</small>
 
 ```js
 module.exports = {
@@ -289,7 +289,7 @@ module.exports = {
 That file could be passed to the command-line interface, while also setting the
 `verbose` option, via
 
-このファイルは、コマンドラインインターフェイスに渡すこともできます。また、冗長オプションを設定することもできます。
+<small>このファイルは、コマンドラインインターフェイスに渡すこともできます。また、冗長オプションを設定することもできます。</small>
 
 ```sh
 $ sw-precache --config=path/to/sw-precache-config.js --verbose
@@ -298,12 +298,12 @@ $ sw-precache --config=path/to/sw-precache-config.js --verbose
 This provides the most flexibility, such as providing a regular expression for
 the `runtimeCaching.urlPattern` option.
 
-これにより、runtimeCaching.urlPattern オプションの正規表現を提供するなどの柔軟性が最も高くなります。
+<small>これにより、runtimeCaching.urlPattern オプションの正規表現を提供するなどの柔軟性が最も高くなります。</small>
 
 We also support passing in a JSON file for `--config`, though this provides
 less flexibility:
 
-私たちは --config の JSON ファイルを渡すこともサポートしていますが、これは柔軟性に欠けます：
+<small>私たちは --config の JSON ファイルを渡すこともサポートしていますが、これは柔軟性に欠けます：</small>
 
 ```json
 {
@@ -325,11 +325,11 @@ less flexibility:
 
 It's often desireable, even necessary to use precaching and runtime caching together. You may have seen our [`sw-toolbox`](https://github.com/GoogleChrome/sw-toolbox) tool, which handles runtime caching, and wondered how to use them together. Fortunately, `sw-precache` handles this for you.
 
-プリキャッシュとランタイムキャッシングを一緒に使用することは、しばしば望ましいことです。sw-toolbox ツールで、ランタイムキャッシング処理を見たことがあるかもしれず、それらを一緒に使用する方法を疑問に思ったかもしれません。幸いにも、sw-precache がこれを処理します。
+<small>プリキャッシュとランタイムキャッシングを一緒に使用することは、しばしば望ましいことです。sw-toolbox ツールで、ランタイムキャッシング処理を見たことがあるかもしれず、それらを一緒に使用する方法を疑問に思ったかもしれません。幸いにも、sw-precache がこれを処理します。</small>
 
 The `sw-precache` module has the ability to include the `sw-toolbox` code and configuration alongside its own configuration. Using the `runtimeCaching` configuration option in `sw-precache` ([see below](#runtimecaching-arrayobject)) is a shortcut that accomplishes what you could do manually by importing `sw-toolbox` in your service worker and writing your own routing rules.
 
-sw-precache モジュールには、sw-toolbox のコードと独自の構成をともに含めることができます。 sw-precache（後述）の runtimeCaching 設定オプションを使用すると、サービスワーカーで sw-toolbox をインポートして独自のルーティングルールを作成することで、手動で行うことができるようになります。
+<small>sw-precache モジュールには、sw-toolbox のコードと独自の構成をともに含めることができます。 sw-precache（後述）の runtimeCaching 設定オプションを使用すると、サービスワーカーで sw-toolbox をインポートして独自のルーティングルールを作成することで、手動で行うことができるようになります。</small>
 
 ## API
 
@@ -337,7 +337,7 @@ sw-precache モジュールには、sw-toolbox のコードと独自の構成を
 
 The `sw-precache` module exposes two methods: `generate` and `write`.
 
-sw-precache モジュールは、generate と write という2つのメソッドを公開しています。
+<small>sw-precache モジュールは、generate と write という2つのメソッドを公開しています。</small>
 
 #### generate(options, callback)
 
@@ -345,19 +345,19 @@ sw-precache モジュールは、generate と write という2つのメソッド
 from them and passes the result to a callback function, which must
 have the following interface:
 
-generate オプションを使用して、それらからサービスワーカーを生成し、その結果をコールバック関数に渡します。コールバック関数には、次のインタフェースが必要です。
+<small>generate オプションを使用して、それらからサービスワーカーを生成し、その結果をコールバック関数に渡します。コールバック関数には、次のインタフェースが必要です。</small>
 
 `callback(error, serviceWorkerString)`
 
 In the 1.x releases of `sw-precache`, this was the default and only method
 exposed by the module.
 
-sw-precache の 1.x リリースでは、これはモジュールによって公開されるデフォルトの唯一のメソッドでした。
+<small>sw-precache の 1.x リリースでは、これはモジュールによって公開されるデフォルトの唯一のメソッドでした。</small>
 
 Since 2.2.0, `generate()` also returns a
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-2.2.0以降、generate() も Promise を返します。
+<small>2.2.0以降、generate() も Promise を返します。</small>
 
 #### write(filePath, options, callback)
 `write` takes in [options](#options), generates a service worker from them,
@@ -365,17 +365,17 @@ and writes the service worker to a specified file. This method always
 invokes `callback(error)`. If no error was found, the `error` parameter will
 be `null`
 
-write はオプションをとり、そこからサービスワーカーを生成し、サービスワーカーを指定されたファイルに書き込みます。このメソッドは常にコールバック（エラー）を呼び出します。エラーが見つからなかった場合、error パラメータは null になります。
+<small>write はオプションをとり、そこからサービスワーカーを生成し、サービスワーカーを指定されたファイルに書き込みます。このメソッドは常にコールバック（エラー）を呼び出します。エラーが見つからなかった場合、error パラメータは null になります。</small>
 
 Since 2.2.0, `write()` also returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-2.2.0 以降、write() は常に Promsie を返します
+<small>2.2.0 以降、write() は常に Promsie を返します</small>
 
 ### Options Parameter
 
 Both the `generate()` and `write()` methods take the same options.
 
-generate() と write() メソッドは同じオプションを取ります。
+<small>generate() と write() メソッドは同じオプションを取ります。</small>
 
 #### cacheId [String]
 A string used to distinguish the caches created by different web applications that are served off
@@ -384,7 +384,7 @@ likely to be an issue in a production environment, it avoids cache-conflicts whe
 projects all served off of `http://localhost`. You may want to set it to, e.g., the `name`
 property from your `package.json`.
 
-同じ起点とパスから提供される異なる Web アプリケーションによって作成されたキャッシュを区別するために使用される文字列。運用環境では、同じ URL から完全に異なるサイトを提供することは問題ではありませんが、http://localhost で提供されているさまざまなプロジェクトをテストする際のキャッシュ競合を回避します。たとえば、package.json の name プロパティに設定することができます。
+<small>同じ起点とパスから提供される異なる Web アプリケーションによって作成されたキャッシュを区別するために使用される文字列。運用環境では、同じ URL から完全に異なるサイトを提供することは問題ではありませんが、http://localhost で提供されているさまざまなプロジェクトをテストする際のキャッシュ競合を回避します。たとえば、package.json の name プロパティに設定することができます。</small>
 
 _Default_: `''`
 
@@ -393,13 +393,13 @@ Controls whether or not the generated service worker will call
 [`clients.claim()`](https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim)
 inside the `activate` handler.
 
-生成されたサービスワーカーが activate ハンドラ内で clients.claim() を呼び出すかどうかを制御します。
+<small>生成されたサービスワーカーが activate ハンドラ内で clients.claim() を呼び出すかどうかを制御します。</small>
 
 Calling `clients.claim()` allows a newly registered service worker to take
 control of a page immediately, instead of having to wait until the next page
 navigation.
 
-clients.claim() を呼び出すと、新規に登録されたサービスワーカーは、次のページナビゲーションまで待つ必要はなく、直ちにページを制御できます。
+<small>clients.claim() を呼び出すと、新規に登録されたサービスワーカーは、次のページナビゲーションまで待つ必要はなく、直ちにページを制御できます。</small>
 
 _Default_: `true`
 
@@ -412,7 +412,7 @@ set `directoryIndex` to `false` or `null`. To override this behavior for one
 or more URLs, use the `dynamicUrlToDependencies` option to explicitly set up
 mappings between a directory URL and a corresponding file.
 
-ディレクトリパスのようにフォーマットされた URL（つまり、'/' で終わる URL）を返すためのデフォルトのファイル名を設定します。 sw-precache は、その変換を考慮に入れ、 '/' で終わる URL に一致するものが他にない場合、相対 directoryIndex ファイルの内容を提供します。この動作をオフにするには、directoryIndex を false または null に設定します。 1つ以上の URL のこの動作を無効にするには、dynamicUrlToDependencies オプションを使用して、ディレクトリ URL と対応するファイルの間のマッピングを明示的に設定します。
+<small>ディレクトリパスのようにフォーマットされた URL（つまり、'/' で終わる URL）を返すためのデフォルトのファイル名を設定します。 sw-precache は、その変換を考慮に入れ、 '/' で終わる URL に一致するものが他にない場合、相対 directoryIndex ファイルの内容を提供します。この動作をオフにするには、directoryIndex を false または null に設定します。 1つ以上の URL のこの動作を無効にするには、dynamicUrlToDependencies オプションを使用して、ディレクトリ URL と対応するファイルの間のマッピングを明示的に設定します。</small>
 
 _Default_: `'index.html'`
 
@@ -424,7 +424,7 @@ browser's HTTP cache) can end up being read from the service worker's cache
 indefinitely. Jake Archibald's [blog post](https://jakearchibald.com/2016/caching-best-practices/#a-service-worker-can-extend-the-life-of-these-bugs)
 provides more context about this problem.
 
-sw-precache 要求が、指定された URL にある最新のバージョンのリソースでキャッシュ結果を取り込むことが非常に重要です。古くなったレスポンス（ブラウザの HTTP キャッシュにあるものなど）で満たされたリクエストは、サービスワーカーのキャッシュから無期限に読み込まれる可能性があります。 Jake Archibald のブログ記事では、この問題に関する詳細なコンテキストを提供しています。
+<small>sw-precache 要求が、指定された URL にある最新のバージョンのリソースでキャッシュ結果を取り込むことが非常に重要です。古くなったレスポンス（ブラウザの HTTP キャッシュにあるものなど）で満たされたリクエストは、サービスワーカーのキャッシュから無期限に読み込まれる可能性があります。 Jake Archibald のブログ記事では、この問題に関する詳細なコンテキストを提供しています。</small>
 
 In the interest of avoiding that scenario, `sw-precache` will, by default,
 append a cache-busting parameter to the end of each URL it requests when
@@ -436,7 +436,7 @@ resources already include versioning information in their URLs (via a tool like
 long-lived HTTP caching headers, then the extra cache-busting URL parameter
 is not needed, and can be safely excluded.
 
-このシナリオを避けるため、sw-precache はデフォルトで、キャッシュを作成または更新するときに要求する各 URL の末尾にキャッシュ無効化パラメータを追加します。応答に HTTP キャッシュヘッダーを設定する際に、明示的に「正しいこと」を行っている開発者は、このキャッシュ無効化をオプトアウトすることができます。たとえば、すべての静的リソースにすでに URL にバージョニング情報が含まれている場合（gulp-rev などのツールを使用）、長寿命の HTTP キャッシュヘッダーが提供されている場合は、余分なキャッシュ無効化 URL パラメータは不要です。安全に除外することができます。
+<small>このシナリオを避けるため、sw-precache はデフォルトで、キャッシュを作成または更新するときに要求する各 URL の末尾にキャッシュ無効化パラメータを追加します。応答に HTTP キャッシュヘッダーを設定する際に、明示的に「正しいこと」を行っている開発者は、このキャッシュ無効化をオプトアウトすることができます。たとえば、すべての静的リソースにすでに URL にバージョニング情報が含まれている場合（gulp-rev などのツールを使用）、長寿命の HTTP キャッシュヘッダーが提供されている場合は、余分なキャッシュ無効化 URL パラメータは不要です。安全に除外することができます。</small>
 
 `dontCacheBustUrlsMatching` gives you a way of opting-in to skipping the cache
 busting behavior for a subset of your URLs (or all of them, if a catch-all value
@@ -446,13 +446,13 @@ of each URL that's prefetched will be matched against this value.
 If there's a match, then the URL will be prefetched as-is, without an additional
 cache-busting URL parameter appended.
 
-dontCacheBustUrlsMatching を使用すると、URL のサブセット（/./ などのキャッチオール値が使用されている場合はそのすべて）のキャッシュ破棄動作をスキップすることができます。設定されている場合、プリフェッチされた各 URL のパス名はこの値と照合されます。一致するものがある場合、追加のキャッシュ無効化 URL パラメータを追加することなく、URL がそのままプリフェッチされます。
+<small>dontCacheBustUrlsMatching を使用すると、URL のサブセット（/./ などのキャッチオール値が使用されている場合はそのすべて）のキャッシュ破棄動作をスキップすることができます。設定されている場合、プリフェッチされた各 URL のパス名はこの値と照合されます。一致するものがある場合、追加のキャッシュ無効化 URL パラメータを追加することなく、URL がそのままプリフェッチされます。</small>
 
 Note: Prior to `sw-precache` v5.0.0, `dontCacheBustUrlsMatching` matched against
 the entire request URL. As of v5.0.0, it only matches against the URL's
 [pathname](https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/pathname).
 
-注意：sw-precache v5.0.0 以前は、dontCacheBustUrlsMatching がリクエスト URL 全体と一致していました。 v5.0.0 以降、URL のパス名とのみ一致します。
+<small>注意：sw-precache v5.0.0 以前は、dontCacheBustUrlsMatching がリクエスト URL 全体と一致していました。 v5.0.0 以降、URL のパス名とのみ一致します。</small>
 
 _Default_: not set
 
