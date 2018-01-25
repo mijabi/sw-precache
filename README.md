@@ -30,18 +30,18 @@ around `sw-precache` for specific build environments, like
 It can be [used alongside](sw-precache-and-sw-toolbox.md) the [`sw-toolbox`](https://github.com/GoogleChrome/sw-toolbox)
 library, which works well when following the App Shell + dynamic content model.
 
-<small>これは sw-toolbox ライブラリと一緒に使うことができます。これは、App Shell + 動的コンテンツモデルに従うときにうまくいきます。</small>
+<small>これは [sw-toolbox ライブラリと一緒に使う](https://github.com/mijabi/sw-precache/blob/master/sw-precache-and-sw-toolbox.md)ことができます。これは、App Shell + 動的コンテンツモデルに従うときにうまくいきます。</small>
 
 The full documentation is in this README, and the
 [getting started guide](GettingStarted.md) provides a quicker jumping off point.
 
-<small>完全なドキュメントはこの README にあり、Getting Started guide はより迅速なジャンプポイントを提供します。</small>
+<small>完全なドキュメントはこの README にあり、[Getting Started guide](https://github.com/mijabi/sw-precache/blob/master/sw-precache-and-sw-toolbox.md) はより迅速なジャンプポイントを提供します。</small>
 
 To learn more about the internals of the generated service worker, you can read
 [this deep-dive](https://medium.com/@Huxpro/how-does-sw-precache-works-2d99c3d3c725)
 by [Huang Xuan](https://twitter.com/Huxpro).
 
-<small>生成されたサービスワーカーの内部について詳しくは、Huang Xuan の deep-dive をご覧ください。</small>
+<small>生成されたサービスワーカーの内部について詳しくは、Huang Xuan の [deep-dive](https://medium.com/@Huxpro/how-does-sw-precache-works-2d99c3d3c725) をご覧ください。</small>
 
 # Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -116,7 +116,7 @@ Service worker functionality is only available on pages that are accessed via HT
 outlined in the
 ["Prefer Secure Origins For Powerful New Features" document](http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
 
-<small>サービスワーカー機能は、HTTPS 経由でアクセスされるページでのみ使用できます。 （テストを容易にするために、http://localhost も機能します）。この制限の根拠は、Prefer Secure Origins For Powerful New Features のドキュメントで概説されています。</small>
+<small>サービスワーカー機能は、HTTPS 経由でアクセスされるページでのみ使用できます。 （テストを容易にするために、http://localhost も機能します）。この制限の根拠は、[Prefer Secure Origins For Powerful New Features](http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features) のドキュメントで概説されています。</small>
 
 2. **Incorporate `sw-precache` into your `node`-based build script.**  
 sw-precache を node ベースのビルドスクリプトに組み込みます。
@@ -153,12 +153,12 @@ repo, using [`npm install`](https://docs.npmjs.com/) to pull in the
 dependencies, changing to the `demo/` directory, running `` `npm bin`/gulp serve-dist ``, and
 then visiting http://localhost:3000.
 
-<small>プロジェクトのサンプル gulpfile.js は、コンテキスト内で sw-precache を完全に使用する方法を示しています。サンプル gulpfile.js は、プロジェクトのルートにあるサンプルではなく、デモフォルダ内のサンプルです。サンプルを実行するには、このリポジトリを複製し、npm install を使用して依存関係を取得し、demo/ ディレクトリに変更し、 `npm bin /gulp serve-dist` を実行し、http://localhost:3000 にアクセスしてください。</small>
+<small>プロジェクトの[サンプル gulpfile.js](https://github.com/mijabi/sw-precache/blob/master/demo/gulpfile.js) は、コンテキスト内で sw-precache を完全に使用する方法を示しています。サンプル gulpfile.js は、プロジェクトのルートにあるサンプルではなく、デモフォルダ内のサンプルです。サンプルを実行するには、このリポジトリを複製し、npm install を使用して依存関係を取得し、demo/ ディレクトリに変更し、 `npm bin /gulp serve-dist` を実行し、http://localhost:3000 にアクセスしてください。</small>
 
 There's also a [sample `Gruntfile.js`](/demo/Gruntfile.js) that shows service worker generation in
 Grunt. Though, it doesn't run a server on localhost.
 
-<small>Grunt のサービスワーカーの生成を示すサンプル Gruntfile.js もあります。しかし、localhost ではサーバを実行しません。</small>
+<small>Grunt のサービスワーカーの生成を示す[サンプル Gruntfile.js](https://github.com/mijabi/sw-precache/blob/master/demo/Gruntfile.js) もあります。しかし、localhost ではサーバを実行しません。</small>
 
 Here's a simpler gulp example for a basic use case. It assumes your site's resources are located under
 `app` and that you'd like to cache *all* your JavaScript, HTML, CSS, and image files.
@@ -191,7 +191,7 @@ conditionally registering a service worker only if it's supported (determined by
 `if('serviceWorker' in navigator)`), you'll get offline support on browsers with service workers and
 on browsers that don't support service workers, the offline-specific code will never be called.
 There's no overhead/breakage for older browsers if you add `sw-precache` to your build.  
-<small>サービスワーカーのキャッシュは、pregressive enhancement と見なすべきです。サポートされている場合（if( 'serviceWorker' in navigator)）、条件付きでサービスワーカーを登録するモデルに従うと、サービスワーカーを持つブラウザとサービスワーカーをサポートしていないブラウザでオフラインサポートが得られます。オフライン固有のコードは決して呼び出されません。 sw-precache をビルドに追加しても、古いブラウザのオーバーヘッド/ブレークはありません。</small>
+<small>サービスワーカーのキャッシュは、pregressive enhancement と見なすべきです。サポートされている場合 if( 'serviceWorker' in navigator)、条件付きでサービスワーカーを登録するモデルに従うと、サービスワーカーを持つブラウザとサービスワーカーをサポートしていないブラウザでオフラインサポートが得られ、オフライン固有のコードは決して呼び出されません。sw-precache をビルドに追加しても、古いブラウザのオーバーヘッド/ブレークはありません。</small>
 
 - **All** resources that are precached will be fetched by a service worker running in a separate
 thread as soon as the service worker is installed. You should be judicious in what you list in the
@@ -205,7 +205,7 @@ point). Other caching strategies, like those outlined in the [Offline Cookbook](
 conjunction with `sw-precache` to provide the best experience for your users. If
 you do implement additional caching logic, put the code in a separate JavaScript
 file and include it using the `importScripts()` method.  
-<small>すべてのタイプのリソースに対して、プレキャッシングが働くわけではありません（前のポイントを参照）。Offline Cookbook に記載されているような他のキャッシング戦略は、sw-precache と組み合わせて使用​​して、ユーザーに最高のエクスペリエンスを提供することができます。追加のキャッシュロジックを実装する場合は、コードを別の JavaScript ファイルに置き、importScripts() メソッドを使用してコードをインクルードします。</small>
+<small>すべてのタイプのリソースに対して、プレキャッシングが働くわけではありません（前のポイントを参照）。[Offline Cookbook](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/) に記載されているような他のキャッシング戦略は、sw-precache と組み合わせて使用​​して、ユーザーに最高のエクスペリエンスを提供することができます。追加のキャッシュロジックを実装する場合は、コードを別の JavaScript ファイルに置き、importScripts() メソッドを使用してコードをインクルードします。</small>
 
 - `sw-precache` uses a [cache-first](http://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network) strategy, which results in a copy of
 any cached content being returned without consulting the network. A useful
@@ -214,7 +214,7 @@ when there's new content available, and give them an opportunity to reload the
 page to pick up that new content (which the service worker will have added to
 the cache, and will be available at the next page load). The sample [`service-worker-registration.js`](/demo/app/js/service-worker-registration.js) file [illustrates](https://github.com/GoogleChrome/sw-precache/blob/7688ee8ccdaddd9171af352384d04d16d712f9d3/demo/app/js/service-worker-registration.js#L51)
 the service worker lifecycle event you can listen for to trigger this message.  
-<small>sw-precache は cache-first です。その結果、キャッシュされたコンテンツのコピーが、ネットワークに相談せずに返されます。この戦略を採用するのに便利なパターンは、利用可能な新しいコンテンツがあるときにユーザーにトースト/アラートを表示し、ページをリロードして新しいコンテンツを取得する機会を与えられることです（サービスワーカーがキャッシュに追加します） 、次のページのロード時に利用可能になります）。サンプル service-worker-registration.js ファイルは、このメッセージをトリガーするために待機できるサービスワーカーライフサイクルイベントを示しています。</small>
+<small>sw-precache は [cache-first](https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network) です。その結果、キャッシュされたコンテンツのコピーが、ネットワークに相談せずに返されます。この戦略を採用するのに便利なパターンは、[利用可能な新しいコンテンツがあるときにユーザーにトースト/アラートを表示し、ページをリロードして新しいコンテンツを取得する機会を与えられる](https://github.com/GoogleChromeLabs/sw-precache/blob/7688ee8ccdaddd9171af352384d04d16d712f9d3/demo/app/js/service-worker-registration.js#L51)ことです（サービスワーカーがキャッシュに追加し 、次のページのロード時に利用可能になります）。サンプル service-worker-registration.js ファイルは、このメッセージをトリガーするために待機できるサービスワーカーライフサイクルイベントを示しています。</small>
 
 ### Command-line interface
 
@@ -250,7 +250,7 @@ $ sw-precache
 Alternatively, if you'd like to only precache `.html` files that live within `dist/`, which is a
 subdirectory of the current directory, you could run
 
-<small>あるいは、現在のディレクトリのサブディレクトリである dist/ 内に存在する .html ファイルのみをプリキャッシュする場合は、以下のように書けるでしょう</small>
+<small>あるいは、現在のディレクトリのサブディレクトリである dist/ 内に存在する .html ファイルのみをプリキャッシュする場合は、以下のように書けるでしょう</small>
 
 ```sh
 $ sw-precache --root=dist --static-file-globs='dist/**/*.html'
@@ -303,7 +303,7 @@ the `runtimeCaching.urlPattern` option.
 We also support passing in a JSON file for `--config`, though this provides
 less flexibility:
 
-<small>私たちは --config の JSON ファイルを渡すこともサポートしていますが、これは柔軟性に欠けます：</small>
+<small>--config の JSON ファイルを渡すこともサポートしていますが、これは柔軟性に欠けます：</small>
 
 ```json
 {
@@ -325,7 +325,7 @@ less flexibility:
 
 It's often desireable, even necessary to use precaching and runtime caching together. You may have seen our [`sw-toolbox`](https://github.com/GoogleChrome/sw-toolbox) tool, which handles runtime caching, and wondered how to use them together. Fortunately, `sw-precache` handles this for you.
 
-<small>プリキャッシュとランタイムキャッシングを一緒に使用することは、しばしば望ましいことです。sw-toolbox ツールで、ランタイムキャッシング処理を見たことがあるかもしれず、それらを一緒に使用する方法を疑問に思ったかもしれません。幸いにも、sw-precache がこれを処理します。</small>
+<small>プリキャッシュとランタイムキャッシングを一緒に使用することは、しばしば望ましいことです。[sw-toolbox ツール](https://github.com/GoogleChrome/sw-toolbox)で、ランタイムキャッシング処理を見たことがあるかもしれず、それらを一緒に使用する方法を考えたかもしれません。幸いにも、sw-precache はそれを扱えます。</small>
 
 The `sw-precache` module has the ability to include the `sw-toolbox` code and configuration alongside its own configuration. Using the `runtimeCaching` configuration option in `sw-precache` ([see below](#runtimecaching-arrayobject)) is a shortcut that accomplishes what you could do manually by importing `sw-toolbox` in your service worker and writing your own routing rules.
 
